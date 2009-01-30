@@ -1,0 +1,8 @@
+* try to get templates out of the feeder API in a smooth way
+* integrate more modifiers, e.g. x whitespace modifier
+* use d pointers
+* fix anchor mode for findLast/FindAll?
+* more syntax modes, e.g. string search?
+* implement escape function?
+* check TODO marks inside code
+

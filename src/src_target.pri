@@ -1,0 +1,2 @@
+TARGET = QtBoostRegex
+TEMPLATE = lib

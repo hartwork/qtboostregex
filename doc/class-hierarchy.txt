@@ -1,0 +1,33 @@
+* class QRegexEngineBase
+      o enum AnchorMode
+            + AnchorWontMatch
+            + AnchorAtStartEnd
+            + AnchorAtEachLine 
+      o Qt::CaseSensitivity caseSensitivity () const;
+      o bool isValid () const;
+      o int numCaptures () const;
+      o QString pattern () const;
+      o void setCaseSensitivity (Qt::CaseSensitivity cs);
+      o void setPattern (const QString & pattern);
+* class QRegexEngine : QRegexEngineBase
+      o QRegexMatch exactMatch (const QString & input, AnchorMode anchorMode = AnchorAtStartEnd) const;
+      o QRegexMatch findFirst (const QString & input, int startOffset = 0, int endOffset = -1, AnchorMode anchorMode = AnchorAtStartEnd) const;
+      o QRegexMatch findLast (const QString & input, int startOffset = 0, int endOffset = -1, AnchorMode anchorMode = AnchorAtStartEnd) const;
+      o QList<QRegexMatch> findAll (const QString & input, int startOffset = 0, int endOffset = -1, AnchorMode anchorMode = AnchorAtStartEnd) const;
+* class QRegexFeedEngine <feeder_type> : QRegexEngineBase
+      o QRegexFeedMatch<feeder_type> exactMatch (feeder_type begin, feeder_type end, AnchorMode anchorMode = AnchorAtStartEnd) const;
+      o QRegexFeedMatch<feeder_type> findFirst (feeder_type begin, feeder_type end, AnchorMode anchorMode = AnchorAtStartEnd) const;
+      o QRegexFeedMatch<feeder_type> findLast (feeder_type begin, feeder_type end, AnchorMode anchorMode = AnchorAtStartEnd) const;
+      o QList<QRegexFeedMatch<feeder_type> > findAll (feeder_type begin, feeder_type end, AnchorMode anchorMode = AnchorAtStartEnd) const;
+* class QRegexMatchBase <T> // <T> in {<const ushort *>, <feeder_type>}
+      o virtual QString cap (int nth = 0) const = 0;
+      o QStringList capturedTexts () const;
+      o int count () const;
+      o bool isValid () const;
+      o int length (int nth = 0) const;
+      o int pos (int nth = 0) const; 
+* class QRegexMatch : QRegexMatchBase <const ushort *>
+      o QString cap (int nth = 0) const; 
+* class QRegexFeedMatch <feeder_type> : QRegexMatchBase<feeder_type>
+      o QString cap (int nth) const;
+
