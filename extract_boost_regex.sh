@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-VERSION=1_34_1
+VERSION=1_37_0
 BASE=boost_${VERSION}
 ARCHIVE="$BASE.tar.bz2"
 OUTPUT=boost_regex
@@ -9,6 +9,10 @@ if [[ ${TERM} = cygwin ]]; then
     BCP=${BASE}/dist/bin/bcp
 else
     BCP=bcp
+    if [[ x`${BCP} --version 2>/dev/null` = x ]] ; then
+        echo 'Error: bcp (Boost copy) not found, please install.'
+        exit 1
+    fi
 fi
 
 ## Download
